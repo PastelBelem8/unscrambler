@@ -54,15 +54,16 @@ version of `beam search` decoding strategy, which expanded the `k` (default to
 
 ## Results 
 
+
 Regarding the data, we compared the overall token frequencies both for the 
 training and validation data and since they follow more or less the same 
 distribution, they can be seen as samples of the same distribution. 
 
 Tokens distribution in Training Data (first 8000 sentences) 
-![](https://gitlab.com/PastelBelem8/ai-research-challenge-2/raw/assets/imgs/train_data_term_freq.png "Training Data Tokens distribution") 
+![](https://github.com/PastelBelem8/unscrambler/raw/assets/imgs/train_data_term_freq.png "Training Data Tokens distribution") 
 
 Tokens distribution in Validation Data (last 2000 sentences)
-![](https://gitlab.com/PastelBelem8/ai-research-challenge-2/raw/assets/imgs/train_data_term_freq.png "Validation Data Tokens distribution")
+![](https://github.com/PastelBelem8/unscrambler/raw/assets/imgs/train_data_term_freq.png "Validation Data Tokens distribution")
 
 Overall the token distributions are similar between the two datasets, thus 
 strengthening our assumption that both samples could have been drawn from the 
@@ -71,8 +72,42 @@ same distribution.
 
 Table with results... 
 
-|        |         |
-| ------ | ------- | 
+| Bleu   | Model   | Hyperparameters  | Strategy (if applicable)  | tokenization | punctuation | lowercase | numbers |
+| ------ | ------- | ---------------- | ------------------------- | ------------ | ----------- | --------- | ------- |
+|0.019465321| Random |seed: 101      |           |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (all)    |seed: 101    |   |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (1)      |seed: 101     |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (2)      |seed: 101     |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (3)      |seed: 101     |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (4)      |seed: 101     |split   |no         |no       |<NUM>  |
+|0.032996461| Random w/ Heuristics (5)      |seed: 101     |split   |no         |no       |<NUM>  |
+|0.03456929 |Language Model|MLE, 1            |greedy     |split   |no         |no       |<NUM>  |
+|0.036862993|      |MLE, 2                                       |           |split   |no         |no       |<NUM>  |
+|0.032853874|      |MLE, 3                                       |           |split   |no         |no       |<NUM>  |
+|0.03299167 |      |MLE, 4                                       |           |split   |no         |no       |<NUM>  |
+|0.033295661|      |MLE, 5                                       |           |split   |no         |no       |<NUM>  |
+|0.033295661|      |MLE, 6                                       |           |split   |no         |no       |<NUM>  |
+|0.033295661|      |MLE,7                                        |           |split   |no         |no       |<NUM>  |
+|           |Language Model w/ Heuristics|MLE, 1                 |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE, 2                                       |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE, 3                                       |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE, 4                                       |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE, 5                                       |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE, 6                                       |greedy     |split   |no         |no       |<NUM>  |
+|           |      |MLE,7                                        |greedy     |split   |no         |no       |<NUM>  |
+|0.033161876|Language Model|MLE, 1                               |beam, k = 2|split   |no         |no       |<NUM>  |
+|0.03456929 |      |MLE, 1                                       |beam, k = 3|split   |no         |no       |<NUM>  |
+|           |      |MLE, 2                                       |beam, k = 2|        |           |         |       |
+|           |      |MLE, 3                                       |beam, k = 2|        |           |         |       |
+|           |      |MLE, 4                                       |beam, k = 2|        |           |         |       |
+|           |      |MLE, 5                                       |beam, k = 2|        |           |         |       |
+|           |      |MLE, 6                                       |beam, k = 2|        |           |         |       |
+|           |      |MLE,7                                        |beam, k = 2|        |           |         |       |
+|0.03456929 |Language Model w/ Heuristics|Laplace, 1             |greedy     |split   |no         |no       |<NUM>  |
+
+
+Due to time constraints this table was not completed... 
+
 
 ## Main Thoughts
 
@@ -98,4 +133,6 @@ finding a close to optimal solution)
 improve the `belongs_to_entity` heuristic. 
 - Have more time to fine-tune the preprocessing (e.g, lowercase, punctuation, 
 ...)
-- ...
+- Take a closer look to the data, and try to look up some patterns (perhaps, 
+reverse the order of the sentence)
+
